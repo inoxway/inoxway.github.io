@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Myxsi Panel - Control total de tu servidor</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0c10 0%, #0f172a 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(6, 255, 165, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(6, 255, 165, 0.6); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Navegación */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 12, 16, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(6, 255, 165, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            color: #06ffa5;
+            font-size: 1.8rem;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #06ffa5, #4361ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #f8fafc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #06ffa5;
+        }
+
+        .btn-github {
+            background: rgba(6, 255, 165, 0.1);
+            border: 1px solid #06ffa5;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .btn-github:hover {
+            background: #06ffa5;
+            color: #0a0c10 !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(6, 255, 165, 0.05), transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(6, 255, 165, 0.1);
+            border: 1px solid #06ffa5;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #06ffa5, #4361ee, #7209b7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #06ffa5, #4361ee);
+            color: #0a0c10;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(6, 255, 165, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #f8fafc;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #06ffa5;
+        }
+
+        /* Características */
+        .features {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #06ffa5;
+            box-shadow: 0 10px 30px rgba(6, 255, 165, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #06ffa5;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .feature-badge {
+            display: inline-block;
+            background: rgba(6, 255, 165, 0.1);
+            color: #06ffa5;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            margin-top: 1rem;
+        }
+
+        /* Demo Section */
+        .demo {
+            background: linear-gradient(135deg, rgba(6, 255, 165, 0.05), transparent);
+            padding: 5rem 2rem;
+        }
+
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .demo-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .demo-content p {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .demo-stats {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #06ffa5;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .demo-terminal {
+            background: #0a0c10;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(6, 255, 165, 0.3);
+        }
+
+        .terminal-header {
+            background: #1a1e2a;
+            padding: 0.8rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.8rem;
+            background: #0a0c10;
+            color: #00ff9d;
+        }
+
+        .terminal-line {
+            margin-bottom: 0.5rem;
+        }
+
+        .terminal-prompt {
+            color: #06ffa5;
+        }
+
+        /* Screenshots */
+        .screenshots {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .screenshot-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-5px);
+            border-color: #06ffa5;
+        }
+
+        .screenshot-placeholder {
+            background: linear-gradient(135deg, #1a1e2a, #0f172a);
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #06ffa5;
+        }
+
+        .screenshot-card p {
+            padding: 1rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        /* Voice Assistant Section */
+        .voice-assistant {
+            background: linear-gradient(135deg, #0f172a, #1a1e2a);
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .voice-assistant::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(6, 255, 165, 0.03), transparent);
+            animation: float 20s infinite linear;
+        }
+
+        .voice-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .voice-icon {
+            font-size: 4rem;
+            color: #06ffa5;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        .voice-badge {
+            display: inline-block;
+            background: rgba(6, 255, 165, 0.2);
+            color: #06ffa5;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .voice-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .voice-commands {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .voice-command {
+            background: rgba(6, 255, 165, 0.1);
+            border: 1px solid rgba(6, 255, 165, 0.3);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-family: monospace;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0c10;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #06ffa5;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-icons a {
+            color: #94a3b8;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #06ffa5;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .demo-container {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-cube"></i>
+                <span>Myxsi</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Características</a>
+                <a href="#demo">Demo</a>
+                <a href="#voice">Asistente de Voz</a>
+                <a href="https://github.com/yourusername/myxsi" class="btn-github" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge">
+                <i class="fas fa-code"></i> Open Source | Self-Hosted
+            </div>
+            <h1>
+                Control total de tu<br>
+                <span class="gradient-text">servidor Debian</span>
+            </h1>
+            <p>
+                Myxsi es un panel de administración completo con terminal REAL, 
+                gestor de archivos, integración con Immich y un asistente de voz 
+                inteligente. Todo desde tu navegador.
+            </p>
+            <div class="cta-buttons">
+                <a href="https://github.com/yourusername/myxsi" class="btn-primary" target="_blank">
+                    <i class="fab fa-github"></i> Ver en GitHub
+                </a>
+                <a href="#demo" class="btn-secondary">
+                    <i class="fas fa-play"></i> Ver Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Características -->
+    <section id="features" class="features">
+        <h2 class="section-title">✨ Características Principales</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-terminal"></i></div>
+                <h3>Terminal REAL</h3>
+                <p>Terminal Linux completa con xterm.js y WebSocket. Ejecuta bash, vim, htop y cualquier comando como si estuvieras físicamente en el servidor.</p>
+                <span class="feature-badge">bash/zsh soporte</span>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-lock"></i></div>
+                <h3>Autenticación PAM</h3>
+                <p>Usa las mismas credenciales de tu sistema Linux. No almacenamos contraseñas, todo es verificado contra el sistema operativo.</p>
+                <span class="feature-badge">Seguridad máxima</span>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-images"></i></div>
+                <h3>Immich Integration</h3>
+                <p>Google Photos alternativo. Backup automático de fotos, reconocimiento facial, mapas y álbumes compartidos.</p>
+                <span class="feature-badge">Self-hosted</span>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-folder-open"></i></div>
+                <h3>Gestor de Archivos</h3>
+                <p>Navega, sube, descarga y organiza tus archivos desde el navegador. Soporte para múltiples formatos y vista en cuadrícula.</p>
+                <span class="feature-badge">Drag & drop</span>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-microphone"></i></div>
+                <h3>Asistente de Voz</h3>
+                <p>Controla tu servidor con comandos de voz. "Myxsi, mostrar estado del sistema", "Myxsi, reiniciar servidor" y más.</p>
+                <span class="feature-badge">Próximamente</span>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Monitoreo en Tiempo Real</h3>
+                <p>CPU, RAM, disco, procesos y servicios en tiempo real. Gráficos interactivos y alertas configurables.</p>
+                <span class="feature-badge">En vivo</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo">
+        <div class="demo-container">
+            <div class="demo-content">
+                <h2>🔧 Terminal REAL en acción</h2>
+                <p>Accede a una terminal Linux completa desde tu navegador. Ejecuta cualquier comando, edita archivos con vim, monitorea procesos con htop, todo en tiempo real.</p>
+                <div class="demo-stats">
+                    <div class="stat">
+                        <div class="stat-number">⚡ WebSocket</div>
+                        <div class="stat-label">Tiempo real</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">🎨 256 colores</div>
+                        <div class="stat-label">Terminal completa</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">📱 Responsive</div>
+                        <div class="stat-label">Funciona en móvil</div>
+                    </div>
+                </div>
+            </div>
+            <div class="demo-terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dot red"></div>
+                    <div class="terminal-dot yellow"></div>
+                    <div class="terminal-dot green"></div>
+                    <span style="margin-left: 10px; font-size: 0.7rem;">myxsi@server:~</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line"><span class="terminal-prompt">myxsi@server:~$</span> neofetch</div>
+                    <div class="terminal-line">            .-/+oossssoo+/-.               myxsi@server</div>
+                    <div class="terminal-line">        `:+ssssssssssssssssss+:`           OS: Debian 12</div>
+                    <div class="terminal-line">      -+ssssssssssssssssssyyssss+-         Host: Myxsi Panel</div>
+                    <div class="terminal-line">    .ossssssssssssssssssdMMMNysssso.       Kernel: 6.1.0</div>
+                    <div class="terminal-line">   /ssssssssssshdmmNNmmyNMMMMhssssss/     Uptime: 3 days</div>
+                    <div class="terminal-line">  +ssssssssshmydMMMMMMMNddddyssssssss+    Shell: bash 5.2</div>
+                    <div class="terminal-line"> /sssssssshNMMMyhhyyyyhmNMMMNhssssssss/   CPU: Intel i7-8700</div>
+                    <div class="terminal-line">+sssssssssNMmhssoosssssshNMMMMysoosssss+  Memory: 2458MiB / 7892MiB</div>
+                    <div class="terminal-line"><span class="terminal-prompt">myxsi@server:~$</span> <span class="cursor">█</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voice Assistant Section -->
+    <section id="voice" class="voice-assistant">
+        <div class="voice-container">
+            <div class="voice-icon">
+                <i class="fas fa-microphone-alt"></i>
+            </div>
+            <div class="voice-badge">
+                <i class="fas fa-star-of-life"></i> Próximamente en Myxsi 3.0
+            </div>
+            <h2 class="voice-title">🎤 Asistente de Voz</h2>
+            <p style="max-width: 600px; margin: 0 auto; color: #94a3b8;">
+                Controla tu servidor con comandos de voz. "Myxsi, mostrar estado del sistema", 
+                "Myxsi, abrir terminal", "Myxsi, reiniciar servidor". 
+                Reconocimiento de voz offline con Whisper.
+            </p>
+            <div class="voice-commands">
+                <span class="voice-command">"Myxsi, estado del sistema"</span>
+                <span class="voice-command">"Myxsi, abrir terminal"</span>
+                <span class="voice-command">"Myxsi, mostrar fotos"</span>
+                <span class="voice-command">"Myxsi, reiniciar servidor"</span>
+                <span class="voice-command">"Myxsi, subir archivo"</span>
+                <span class="voice-command">"Myxsi, detener proceso"</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section class="screenshots">
+        <h2 class="section-title">📸 Capturas de Pantalla</h2>
+        <div class="screenshots-grid">
+            <div class="screenshot-card">
+                <div class="screenshot-placeholder">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <p>Dashboard con monitoreo en tiempo real</p>
+            </div>
+            <div class="screenshot-card">
+                <div class="screenshot-placeholder">
+                    <i class="fas fa-terminal"></i>
+                </div>
+                <p>Terminal REAL con xterm.js</p>
+            </div>
+            <div class="screenshot-card">
+                <div class="screenshot-placeholder">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+                <p>Gestor de archivos completo</p>
+            </div>
+            <div class="screenshot-card">
+                <div class="screenshot-placeholder">
+                    <i class="fas fa-images"></i>
+                </div>
+                <p>Immich - Galería de fotos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#features">Características</a>
+                <a href="#demo">Demo</a>
+                <a href="#voice">Asistente de Voz</a>
+                <a href="https://github.com/yourusername/myxsi/wiki" target="_blank">Documentación</a>
+                <a href="https://github.com/yourusername/myxsi/issues" target="_blank">Reportar Bug</a>
+            </div>
+            <div class="social-icons">
+                <a href="https://github.com/yourusername/myxsi" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="#"><i class="fab fa-reddit-alien"></i></a>
+            </div>
+            <div class="copyright">
+                <p>© 2024 Myxsi Panel. Open Source bajo licencia MIT.</p>
+                <p style="margin-top: 0.5rem;">
+                    <i class="fas fa-heart" style="color: #ef476f;"></i> 
+                    Hecho para la comunidad de código abierto
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animación suave al hacer scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Animación al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .screenshot-card, .demo-container').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Efecto de escritura en terminal
+        const terminalLines = document.querySelectorAll('.terminal-line');
+        let index = 0;
+        
+        function typeWriter() {
+            if (index < terminalLines.length) {
+                terminalLines[index].style.opacity = '0';
+                terminalLines[index].style.transform = 'translateX(-10px)';
+                setTimeout(() => {
+                    terminalLines[index].style.opacity = '1';
+                    terminalLines[index].style.transform = 'translateX(0)';
+                }, index * 100);
+                index++;
+                setTimeout(typeWriter, 150);
+            }
+        }
+        
+        setTimeout(typeWriter, 500);
+
+        console.log('%c✨ Myxsi Panel - Control total de tu servidor', 'color: #06ffa5; font-size: 16px; font-weight: bold;');
+        console.log('%c🔗 GitHub: https://github.com/yourusername/myxsi', 'color: #4361ee;');
+    </script>
+</body>
+</html>
