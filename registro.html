@@ -26,11 +26,7 @@
             --warning: #fbbf24;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -94,9 +90,7 @@
             -webkit-backdrop-filter: blur(4px);
         }
 
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
 
         .modal-box {
             background: rgba(17, 17, 34, 0.95);
@@ -119,14 +113,8 @@
         }
 
         @keyframes modalPop {
-            from {
-                opacity: 0;
-                transform: scale(0.9) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .modal-icon {
@@ -346,9 +334,7 @@
             gap: 0.4rem;
         }
 
-        .type-btn.active {
-            color: #ffffff;
-        }
+        .type-btn.active { color: #ffffff; }
 
         .type-slider {
             position: absolute;
@@ -363,9 +349,7 @@
             box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
         }
 
-        .type-slider.right {
-            left: calc(50% + 0rem);
-        }
+        .type-slider.right { left: calc(50% + 0rem); }
 
         /* Tarjeta */
         .register-card {
@@ -417,24 +401,12 @@
             transition: all 0.4s;
         }
 
-        .progress-step.active {
-            background: var(--accent-light);
-            box-shadow: 0 0 8px rgba(139, 92, 246, 0.5);
-        }
-
-        .progress-step.done {
-            background: var(--success);
-        }
+        .progress-step.active { background: var(--accent-light); box-shadow: 0 0 8px rgba(139, 92, 246, 0.5); }
+        .progress-step.done { background: var(--success); }
 
         /* Pasos del formulario */
-        .form-step {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .form-step.active {
-            display: block;
-        }
+        .form-step { display: none; animation: fadeIn 0.4s ease; }
+        .form-step.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateX(10px); }
@@ -442,9 +414,7 @@
         }
 
         /* Campos */
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
+        .form-group { margin-bottom: 1.2rem; }
 
         .form-group label {
             display: block;
@@ -489,17 +459,9 @@
             background: rgba(15, 15, 30, 0.8);
         }
 
-        .input-wrapper input::placeholder {
-            color: var(--text-muted);
-        }
-
-        .input-wrapper input.valid {
-            border-color: var(--success);
-        }
-
-        .input-wrapper input.invalid {
-            border-color: var(--error);
-        }
+        .input-wrapper input::placeholder { color: var(--text-muted); }
+        .input-wrapper input.valid { border-color: var(--success); }
+        .input-wrapper input.invalid { border-color: var(--error); }
 
         .toggle-password {
             position: absolute;
@@ -513,9 +475,7 @@
             z-index: 2;
         }
 
-        .toggle-password:hover {
-            color: var(--text-secondary);
-        }
+        .toggle-password:hover { color: var(--text-secondary); }
 
         .validation-message {
             font-size: 0.72rem;
@@ -523,15 +483,8 @@
             display: none;
         }
 
-        .validation-message.error {
-            color: var(--error);
-            display: block;
-        }
-
-        .validation-message.success {
-            color: var(--success);
-            display: block;
-        }
+        .validation-message.error { color: var(--error); display: block; }
+        .validation-message.success { color: var(--success); display: block; }
 
         /* Requisitos de contraseña */
         .password-requirements {
@@ -563,13 +516,8 @@
             text-align: center;
         }
 
-        .requirement.met {
-            color: var(--success);
-        }
-
-        .requirement.met i {
-            color: var(--success);
-        }
+        .requirement.met { color: var(--success); }
+        .requirement.met i { color: var(--success); }
 
         /* Checkbox términos */
         .terms-checkbox {
@@ -592,15 +540,10 @@
             text-decoration: none;
         }
 
-        .terms-checkbox a:hover {
-            text-decoration: underline;
-        }
+        .terms-checkbox a:hover { text-decoration: underline; }
 
         /* Botones */
-        .btn-row {
-            display: flex;
-            gap: 0.75rem;
-        }
+        .btn-row { display: flex; gap: 0.75rem; }
 
         .btn-register {
             flex: 1;
@@ -674,10 +617,7 @@
             border-color: var(--border-hover);
         }
 
-        .btn-google img {
-            width: 20px;
-            height: 20px;
-        }
+        .btn-google img { width: 20px; height: 20px; }
 
         .spinner {
             width: 18px;
@@ -689,9 +629,7 @@
             display: none;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
         /* Separador */
         .divider {
@@ -702,8 +640,7 @@
             position: relative;
         }
 
-        .divider::before,
-        .divider::after {
+        .divider::before, .divider::after {
             content: '';
             position: absolute;
             top: 50%;
@@ -728,10 +665,7 @@
             transition: color 0.3s;
         }
 
-        .login-link a:hover {
-            color: var(--accent-glow);
-            text-decoration: underline;
-        }
+        .login-link a:hover { color: var(--accent-glow); text-decoration: underline; }
 
         /* Volver */
         .back-home {
@@ -749,43 +683,19 @@
             gap: 0.4rem;
         }
 
-        .back-home a:hover {
-            color: var(--accent-light);
-        }
+        .back-home a:hover { color: var(--accent-light); }
 
         /* Responsive */
         @media (max-width: 480px) {
-            .register-card {
-                padding: 2rem 1.25rem;
-                border-radius: 20px;
-            }
-            .register-card h2 {
-                font-size: 1.3rem;
-            }
-            .type-btn {
-                font-size: 0.78rem;
-                padding: 0.6rem 0.5rem;
-            }
-            .btn-row {
-                flex-direction: column;
-            }
-            .btn-back {
-                order: 2;
-            }
-            .btn-register {
-                order: 1;
-            }
-            .modal-box {
-                padding: 2rem 1.5rem;
-            }
-            .modal-buttons {
-                flex-direction: column;
-            }
-            .btn-modal-primary,
-            .btn-modal-secondary {
-                width: 100%;
-                justify-content: center;
-            }
+            .register-card { padding: 2rem 1.25rem; border-radius: 20px; }
+            .register-card h2 { font-size: 1.3rem; }
+            .type-btn { font-size: 0.78rem; padding: 0.6rem 0.5rem; }
+            .btn-row { flex-direction: column; }
+            .btn-back { order: 2; }
+            .btn-register { order: 1; }
+            .modal-box { padding: 2rem 1.5rem; }
+            .modal-buttons { flex-direction: column; }
+            .btn-modal-primary, .btn-modal-secondary { width: 100%; justify-content: center; }
         }
     </style>
 </head>
@@ -997,18 +907,63 @@
     </script>
 
     <script>
+        // ============================================
+        // CONFIGURACIÓN DE API MYXSI
+        // ============================================
+        const MYXSI_API_URL = 'https://script.google.com/macros/s/AKfycbxxaFiN2D7S2WlJN9gmoVHa3iyUHObExjwFHLq52z9K7MLNh-CdobJ5E6UGZVt4snh5/exec';
+
         let currentType = 'personal';
         let currentStep = 1;
 
-        // Esperar Firebase
+        // ============================================
+        // SINCRONIZAR USUARIO CON GOOGLE DRIVE
+        // ============================================
+        async function syncUserWithDrive(user) {
+            try {
+                const response = await fetch(MYXSI_API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'createUser',
+                        uid: user.uid,
+                        email: user.email,
+                        name: user.displayName || user.email.split('@')[0]
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    console.log('✅ Usuario creado en Google Drive:', data.exists ? 'ya existía' : 'nuevo');
+                    
+                    // Guardar configuración inicial
+                    if (data.userData && data.userData.settings) {
+                        localStorage.setItem('myxsi_model', data.userData.settings.model || 'groq');
+                        localStorage.setItem('myxsi_theme', data.userData.settings.theme || 'dark');
+                    }
+                } else {
+                    console.error('❌ Error al crear usuario en Drive:', data.error);
+                }
+            } catch (error) {
+                console.error('❌ Error al sincronizar con Drive:', error);
+            }
+        }
+
+        // ============================================
+        // VERIFICAR SESIÓN AL CARGAR
+        // ============================================
         window.addEventListener('load', () => {
             setTimeout(() => {
                 if (window.onAuthStateChanged && window.auth) {
                     window.onAuthStateChanged(window.auth, (user) => {
                         if (user && user.emailVerified) {
                             console.log('👤 Usuario verificado:', user.email);
-                            // Redirigir al panel correspondiente
-                            redirectAfterRegister(user);
+                            sessionStorage.setItem('myxsi_user_type', currentType);
+                            sessionStorage.setItem('myxsi_user_email', user.email);
+                            sessionStorage.setItem('myxsi_user_name', user.displayName || user.email.split('@')[0]);
+                            
+                            syncUserWithDrive(user).then(() => {
+                                window.location.href = 'chat.html';
+                            });
                         }
                     });
                 }
@@ -1022,7 +977,9 @@
             }
         });
 
-        // Cambiar tipo de registro
+        // ============================================
+        // CAMBIAR TIPO DE REGISTRO
+        // ============================================
         function switchRegisterType(type, btn) {
             currentType = type;
             document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
@@ -1046,7 +1003,9 @@
             }
         }
 
-        // Navegación de pasos
+        // ============================================
+        // NAVEGACIÓN DE PASOS
+        // ============================================
         function nextStep() {
             const fullName = document.getElementById('fullName').value.trim();
             const email = document.getElementById('email').value.trim();
@@ -1078,7 +1037,9 @@
             document.getElementById('step1').classList.remove('done');
         }
 
-        // Validaciones
+        // ============================================
+        // VALIDACIONES
+        // ============================================
         function validateEmail() {
             const email = document.getElementById('email').value.trim();
             const emailMessage = document.getElementById('emailMessage');
@@ -1192,9 +1153,12 @@
             }
         }
 
+        // ============================================
+        // UTILIDADES
+        // ============================================
         function showAlert(message, type) {
             const alertBox = document.getElementById('alertBox');
-            alertBox.textContent = message;
+            alertBox.innerHTML = message;
             alertBox.className = 'alert ' + type;
             setTimeout(() => {
                 alertBox.className = 'alert';
@@ -1214,7 +1178,6 @@
             }
         }
 
-        // Mostrar modal de verificación
         function showVerificationModal(email) {
             document.getElementById('modalEmail').textContent = email;
             document.getElementById('verificationModal').classList.add('active');
@@ -1224,7 +1187,9 @@
             document.getElementById('verificationModal').classList.remove('active');
         }
 
-        // Registrar usuario
+        // ============================================
+        // REGISTRAR USUARIO
+        // ============================================
         async function handleRegister(event) {
             event.preventDefault();
 
@@ -1282,12 +1247,19 @@
                 console.log('✅ Cuenta creada exitosamente:', user.email);
                 console.log('📧 Correo de verificación enviado a:', user.email);
 
+                // Sincronizar con Google Drive
+                await syncUserWithDrive(user);
+
+                // Guardar datos de sesión
+                sessionStorage.setItem('myxsi_user_type', currentType);
+                sessionStorage.setItem('myxsi_user_email', user.email);
+                sessionStorage.setItem('myxsi_user_name', fullName);
+
                 // Mostrar modal de verificación
                 showVerificationModal(user.email);
 
                 // Limpiar formulario
                 document.getElementById('registerForm').reset();
-                // Volver al paso 1
                 prevStep();
                 document.getElementById('step1').classList.remove('done');
                 document.getElementById('step1').classList.add('active');
@@ -1299,7 +1271,7 @@
                 let errorMessage = 'Error al crear la cuenta';
                 switch (error.code) {
                     case 'auth/email-already-in-use':
-                        errorMessage = 'Este correo ya está registrado. <a href="login.html">Inicia sesión</a> o recupera tu contraseña';
+                        errorMessage = 'Este correo ya está registrado. <a href="login.html" style="color:#c4b5fd;">Inicia sesión</a> o recupera tu contraseña';
                         break;
                     case 'auth/invalid-email':
                         errorMessage = 'El correo electrónico no es válido';
@@ -1319,7 +1291,9 @@
             }
         }
 
-        // Registro con Google
+        // ============================================
+        // REGISTRO CON GOOGLE
+        // ============================================
         async function handleGoogleRegister() {
             setLoading(true);
             try {
@@ -1327,11 +1301,19 @@
                 const user = result.user;
                 console.log('✅ Registro con Google exitoso:', user.email);
 
+                // Guardar datos de sesión
+                sessionStorage.setItem('myxsi_user_type', currentType);
+                sessionStorage.setItem('myxsi_user_email', user.email);
+                sessionStorage.setItem('myxsi_user_name', user.displayName || user.email.split('@')[0]);
+
+                // Sincronizar con Google Drive
+                await syncUserWithDrive(user);
+
                 // Google ya verifica el correo automáticamente
                 if (user.emailVerified) {
                     showAlert('✅ Registro exitoso. Redirigiendo...', 'success');
                     setTimeout(() => {
-                        redirectAfterRegister(user);
+                        window.location.href = 'chat.html';
                     }, 1000);
                 } else {
                     showVerificationModal(user.email);
@@ -1342,7 +1324,7 @@
                 setLoading(false);
                 if (error.code !== 'auth/popup-closed-by-user') {
                     if (error.code === 'auth/account-exists-with-different-credential') {
-                        showAlert('Ya existe una cuenta con este correo. <a href="login.html">Inicia sesión</a> con otro método', 'warning');
+                        showAlert('Ya existe una cuenta con este correo. <a href="login.html" style="color:#c4b5fd;">Inicia sesión</a> con otro método', 'warning');
                     } else {
                         showAlert('Error al registrarse con Google', 'error');
                     }
@@ -1350,18 +1332,9 @@
             }
         }
 
-        function redirectAfterRegister(user) {
-            if (currentType === 'business') {
-                console.log('🏢 Redirigiendo a panel empresarial');
-                // window.location.href = '/empresarial/panel.html';
-            } else {
-                console.log('👤 Redirigiendo a panel personal');
-                // window.location.href = '/plataforma/panel.html';
-            }
-            console.log('👤 Usuario:', user.email, '| Nombre:', user.displayName);
-        }
-
-        // Swipe en toggle
+        // ============================================
+        // SWIPE EN TOGGLE (MÓVIL)
+        // ============================================
         const typeSelector = document.getElementById('typeSelector');
         const typeSlider = document.getElementById('typeSlider');
         const btnPersonal = document.getElementById('btnPersonal');
