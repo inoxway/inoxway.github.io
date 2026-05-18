@@ -247,7 +247,7 @@
     </script>
 
     <script>
-        const API_URL = 'https://script.google.com/macros/s/AKfycbwvuzbQNvs5aAxgb38MH0tMCkVoXakxPVTSc6gH8Mbvcqu6LwXoztBe-SaZqbOv9o8/exec';
+        const API_URL = 'https://script.google.com/macros/s/AKfycbwxOrBiFioGz_ZNqNsqflI9-EK9gSceSU1gqvsupkrY7AoSGTDts3R7kePGjkRQ8w6_/exec';
 
         const CONFIG = {
             groq: {
@@ -440,8 +440,7 @@
                         ...chatHistory.slice(-10).map(m => ({ role: m.role === 'assistant' ? 'assistant' : 'user', content: m.content })),
                         { role: 'user', content: msg }
                     ],
-                    temperature: 0.7,
-                    max_tokens: 2048
+                    temperature: 0.7, max_tokens: 2048
                 })
             });
             if (!res.ok) throw new Error('Error ' + res.status);
