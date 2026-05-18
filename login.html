@@ -9,8 +9,6 @@
     <style>
         :root {
             --bg-deep: #06060e;
-            --bg-surface: #0c0c1a;
-            --bg-card: #111122;
             --text-primary: #f0edff;
             --text-secondary: #b8b5d0;
             --text-muted: #7a7798;
@@ -25,11 +23,7 @@
             --success: #34d399;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -43,14 +37,11 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Fondo cósmico */
         .cosmic-bg {
-            position: fixed;
-            top: 0; left: 0;
+            position: fixed; top: 0; left: 0;
             width: 100%; height: 100%;
             pointer-events: none; z-index: 0;
         }
-
         .cosmic-orb {
             position: absolute;
             border-radius: 50%;
@@ -75,11 +66,9 @@
             50% { transform: translate(30px, -40px) scale(1.05); }
         }
 
-        /* Alerta */
         .alert {
             position: fixed;
-            top: 20px;
-            left: 50%;
+            top: 20px; left: 50%;
             transform: translateX(-50%);
             padding: 0.9rem 1.5rem;
             border-radius: 12px;
@@ -91,14 +80,12 @@
             text-align: center;
             max-width: 90%;
         }
-
         .alert.error {
             background: rgba(248, 113, 113, 0.15);
             border: 1px solid var(--error);
             color: var(--error);
             display: block;
         }
-
         .alert.success {
             background: rgba(52, 211, 153, 0.15);
             border: 1px solid var(--success);
@@ -111,7 +98,6 @@
             to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
-        /* Contenedor principal */
         .login-wrapper {
             position: relative;
             z-index: 2;
@@ -119,12 +105,10 @@
             max-width: 460px;
         }
 
-        /* Logo */
         .logo-section {
             text-align: center;
             margin-bottom: 2rem;
         }
-
         .logo-link {
             display: inline-flex;
             align-items: center;
@@ -132,9 +116,7 @@
             font-size: 1.4rem;
             font-weight: 800;
             text-decoration: none;
-            margin-bottom: 0.5rem;
         }
-
         .logo-icon {
             width: 36px; height: 36px;
             background: linear-gradient(135deg, var(--gradient-2), var(--gradient-1));
@@ -145,7 +127,6 @@
             color: white;
             box-shadow: 0 0 24px rgba(139, 92, 246, 0.4);
         }
-
         .logo-link span {
             background: linear-gradient(135deg, var(--accent-glow), var(--accent-light));
             -webkit-background-clip: text;
@@ -153,7 +134,6 @@
             color: transparent;
         }
 
-        /* Selector de tipo */
         .type-selector {
             display: flex;
             background: rgba(17, 17, 34, 0.7);
@@ -163,7 +143,6 @@
             margin-bottom: 1.75rem;
             position: relative;
         }
-
         .type-btn {
             flex: 1;
             padding: 0.7rem 1rem;
@@ -183,15 +162,10 @@
             justify-content: center;
             gap: 0.4rem;
         }
-
-        .type-btn.active {
-            color: #ffffff;
-        }
-
+        .type-btn.active { color: #ffffff; }
         .type-slider {
             position: absolute;
-            top: 0.3rem;
-            left: 0.3rem;
+            top: 0.3rem; left: 0.3rem;
             height: calc(100% - 0.6rem);
             width: calc(50% - 0.3rem);
             background: linear-gradient(135deg, var(--gradient-2), var(--gradient-1));
@@ -200,12 +174,8 @@
             transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.2);
             box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
         }
+        .type-slider.right { left: calc(50% + 0rem); }
 
-        .type-slider.right {
-            left: calc(50% + 0rem);
-        }
-
-        /* Tarjeta del formulario */
         .login-card {
             background: rgba(17, 17, 34, 0.65);
             border: 1px solid var(--border);
@@ -216,14 +186,12 @@
             position: relative;
             overflow: hidden;
         }
-
         .login-card::before {
             content: '';
             position: absolute;
             top: 0; left: 20%; width: 60%; height: 1px;
             background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.6), transparent);
         }
-
         .login-card h2 {
             text-align: center;
             font-size: 1.5rem;
@@ -231,7 +199,6 @@
             margin-bottom: 0.4rem;
             letter-spacing: -0.02em;
         }
-
         .login-card .login-subtitle {
             text-align: center;
             color: var(--text-muted);
@@ -239,26 +206,19 @@
             margin-bottom: 2rem;
         }
 
-        /* Campos del formulario */
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-
+        .form-group { margin-bottom: 1.25rem; }
         .form-group label {
             display: block;
             font-size: 0.82rem;
             font-weight: 600;
             color: var(--text-secondary);
             margin-bottom: 0.4rem;
-            letter-spacing: 0.01em;
         }
-
         .input-wrapper {
             position: relative;
             display: flex;
             align-items: center;
         }
-
         .input-wrapper i {
             position: absolute;
             left: 14px;
@@ -266,7 +226,6 @@
             font-size: 0.9rem;
             pointer-events: none;
         }
-
         .input-wrapper input {
             width: 100%;
             padding: 0.85rem 1rem 0.85rem 2.6rem;
@@ -279,17 +238,12 @@
             transition: all 0.3s;
             outline: none;
         }
-
         .input-wrapper input:focus {
             border-color: var(--accent-light);
             box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
             background: rgba(15, 15, 30, 0.8);
         }
-
-        .input-wrapper input::placeholder {
-            color: var(--text-muted);
-        }
-
+        .input-wrapper input::placeholder { color: var(--text-muted); }
         .toggle-password {
             position: absolute;
             right: 14px;
@@ -300,12 +254,8 @@
             font-size: 0.85rem;
             padding: 4px;
         }
+        .toggle-password:hover { color: var(--text-secondary); }
 
-        .toggle-password:hover {
-            color: var(--text-secondary);
-        }
-
-        /* Opciones adicionales */
         .form-options {
             display: flex;
             justify-content: space-between;
@@ -313,7 +263,6 @@
             margin-bottom: 1.5rem;
             font-size: 0.8rem;
         }
-
         .remember-me {
             display: flex;
             align-items: center;
@@ -321,25 +270,15 @@
             color: var(--text-muted);
             cursor: pointer;
         }
-
-        .remember-me input {
-            accent-color: var(--accent);
-            cursor: pointer;
-        }
-
+        .remember-me input { accent-color: var(--accent); cursor: pointer; }
         .forgot-link {
             color: var(--accent-light);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
         }
+        .forgot-link:hover { color: var(--accent-glow); text-decoration: underline; }
 
-        .forgot-link:hover {
-            color: var(--accent-glow);
-            text-decoration: underline;
-        }
-
-        /* Botón de inicio de sesión */
         .btn-login {
             width: 100%;
             padding: 0.95rem;
@@ -353,44 +292,27 @@
             cursor: pointer;
             transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.2);
             box-shadow: 0 8px 28px rgba(139, 92, 246, 0.3);
-            letter-spacing: -0.01em;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
         }
-
         .btn-login:hover {
             transform: translateY(-2px);
             box-shadow: 0 14px 40px rgba(139, 92, 246, 0.5);
         }
+        .btn-login:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-        .btn-login:active {
-            transform: translateY(0);
-        }
-
-        .btn-login:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* Spinner de carga */
         .spinner {
-            width: 18px;
-            height: 18px;
+            width: 18px; height: 18px;
             border: 2px solid rgba(255,255,255,0.3);
             border-top-color: white;
             border-radius: 50%;
             animation: spin 0.7s linear infinite;
             display: none;
         }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Separador */
         .divider {
             text-align: center;
             color: var(--text-muted);
@@ -398,9 +320,7 @@
             margin: 1.5rem 0;
             position: relative;
         }
-
-        .divider::before,
-        .divider::after {
+        .divider::before, .divider::after {
             content: '';
             position: absolute;
             top: 50%;
@@ -411,7 +331,6 @@
         .divider::before { left: 0; }
         .divider::after { right: 0; }
 
-        /* Botón de Google */
         .btn-google {
             width: 100%;
             padding: 0.85rem;
@@ -429,42 +348,26 @@
             justify-content: center;
             gap: 0.6rem;
         }
+        .btn-google:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--border-hover); }
+        .btn-google img { width: 20px; height: 20px; }
 
-        .btn-google:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--border-hover);
-        }
-
-        .btn-google img {
-            width: 20px;
-            height: 20px;
-        }
-
-        /* Link de registro */
         .register-link {
             text-align: center;
             font-size: 0.85rem;
             color: var(--text-muted);
         }
-
         .register-link a {
             color: var(--accent-light);
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s;
         }
+        .register-link a:hover { color: var(--accent-glow); text-decoration: underline; }
 
-        .register-link a:hover {
-            color: var(--accent-glow);
-            text-decoration: underline;
-        }
-
-        /* Volver al inicio */
         .back-home {
             text-align: center;
             margin-top: 1.5rem;
         }
-
         .back-home a {
             color: var(--text-muted);
             text-decoration: none;
@@ -474,41 +377,25 @@
             align-items: center;
             gap: 0.4rem;
         }
+        .back-home a:hover { color: var(--accent-light); }
 
-        .back-home a:hover {
-            color: var(--accent-light);
-        }
-
-        /* Responsive */
         @media (max-width: 480px) {
-            .login-card {
-                padding: 2rem 1.25rem;
-                border-radius: 20px;
-            }
-            .login-card h2 {
-                font-size: 1.3rem;
-            }
-            .type-btn {
-                font-size: 0.78rem;
-                padding: 0.6rem 0.5rem;
-            }
+            .login-card { padding: 2rem 1.25rem; border-radius: 20px; }
+            .login-card h2 { font-size: 1.3rem; }
+            .type-btn { font-size: 0.78rem; padding: 0.6rem 0.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Fondo -->
     <div class="cosmic-bg">
         <div class="cosmic-orb orb-1"></div>
         <div class="cosmic-orb orb-2"></div>
     </div>
 
-    <!-- Alerta -->
     <div class="alert" id="alertBox"></div>
 
-    <!-- Login -->
     <div class="login-wrapper">
-        <!-- Logo -->
         <div class="logo-section">
             <a href="index.html" class="logo-link">
                 <div class="logo-icon">✦</div>
@@ -516,7 +403,6 @@
             </a>
         </div>
 
-        <!-- Selector de tipo de usuario -->
         <div class="type-selector" id="typeSelector">
             <div class="type-slider" id="typeSlider"></div>
             <button class="type-btn active" onclick="switchLoginType('personal', this)" id="btnPersonal">
@@ -527,7 +413,6 @@
             </button>
         </div>
 
-        <!-- Formulario -->
         <div class="login-card">
             <h2 id="loginTitle">Iniciar Sesión</h2>
             <p class="login-subtitle" id="loginSubtitle">Accede a tu cuenta personal</p>
@@ -579,7 +464,6 @@
             </p>
         </div>
 
-        <!-- Volver -->
         <div class="back-home">
             <a href="index.html"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
         </div>
@@ -630,23 +514,72 @@
     </script>
 
     <script>
+        // ============================================
+        // CONFIGURACIÓN DE API MYXSI
+        // ============================================
+        const MYXSI_API_URL = 'https://script.google.com/macros/s/AKfycbxxaFiN2D7S2WlJN9gmoVHa3iyUHObExjwFHLq52z9K7MLNh-CdobJ5E6UGZVt4snh5/exec';
+
         let currentType = 'personal';
 
-        // Esperar a que Firebase esté listo
+        // ============================================
+        // SINCRONIZAR USUARIO CON GOOGLE DRIVE
+        // ============================================
+        async function syncUserWithDrive(user) {
+            try {
+                const response = await fetch(MYXSI_API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'createUser',
+                        uid: user.uid,
+                        email: user.email,
+                        name: user.displayName || user.email.split('@')[0]
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    console.log('✅ Usuario sincronizado con Google Drive:', data.exists ? 'ya existía' : 'nuevo');
+                    
+                    // Guardar configuración del usuario
+                    if (data.userData && data.userData.settings) {
+                        if (data.userData.settings.model) {
+                            localStorage.setItem('myxsi_model', data.userData.settings.model);
+                        }
+                        if (data.userData.settings.theme) {
+                            localStorage.setItem('myxsi_theme', data.userData.settings.theme);
+                        }
+                    }
+                } else {
+                    console.error('❌ Error al sincronizar usuario:', data.error);
+                }
+            } catch (error) {
+                console.error('❌ Error al sincronizar con Drive:', error);
+            }
+        }
+
+        // ============================================
+        // VERIFICAR SESIÓN AL CARGAR
+        // ============================================
         window.addEventListener('load', () => {
             setTimeout(() => {
                 if (window.onAuthStateChanged && window.auth) {
                     window.onAuthStateChanged(window.auth, (user) => {
                         if (user && user.emailVerified) {
-                            console.log('👤 Usuario ya autenticado:', user.email);
-                            redirectAfterLogin(user);
+                            // Si ya hay sesión activa y verificada, sincronizar y redirigir
+                            sessionStorage.setItem('myxsi_user_type', currentType);
+                            syncUserWithDrive(user).then(() => {
+                                window.location.href = 'chat.html';
+                            });
                         }
                     });
                 }
             }, 1000);
         });
 
-        // Cambiar tipo de login
+        // ============================================
+        // CAMBIAR TIPO DE LOGIN
+        // ============================================
         function switchLoginType(type, btn) {
             currentType = type;
             document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
@@ -670,7 +603,9 @@
             }
         }
 
-        // Mostrar/ocultar contraseña
+        // ============================================
+        // UTILIDADES
+        // ============================================
         function togglePassword() {
             const passwordInput = document.getElementById('password');
             const toggleIcon = document.getElementById('toggleIcon');
@@ -685,10 +620,9 @@
             }
         }
 
-        // Mostrar alerta
         function showAlert(message, type) {
             const alertBox = document.getElementById('alertBox');
-            alertBox.textContent = message;
+            alertBox.innerHTML = message;
             alertBox.className = 'alert ' + type;
             setTimeout(() => {
                 alertBox.className = 'alert';
@@ -696,7 +630,6 @@
             }, 5000);
         }
 
-        // Mostrar/ocultar loading
         function setLoading(loading) {
             const spinner = document.getElementById('spinner');
             const loginButton = document.getElementById('loginButton');
@@ -709,7 +642,9 @@
             }
         }
 
-        // Manejar inicio de sesión
+        // ============================================
+        // LOGIN CON EMAIL Y CONTRASEÑA
+        // ============================================
         async function handleLogin(event) {
             event.preventDefault();
             
@@ -739,22 +674,29 @@
 
                 const user = userCredential.user;
 
-                // Verificar si el correo está verificado
                 if (!user.emailVerified) {
-                    showAlert('⚠️ Debes verificar tu correo electrónico antes de continuar. Revisa tu bandeja de entrada', 'error');
+                    showAlert('⚠️ Debes verificar tu correo electrónico antes de continuar. Revisa tu bandeja de entrada.', 'error');
+                    await window.auth.signOut();
                     setLoading(false);
                     return;
                 }
 
-                console.log('✅ Inicio de sesión exitoso:', user.email);
-                showAlert('✅ Inicio de sesión exitoso', 'success');
+                // Guardar datos de sesión
+                sessionStorage.setItem('myxsi_user_type', currentType);
+                sessionStorage.setItem('myxsi_user_email', user.email);
+                sessionStorage.setItem('myxsi_user_name', user.displayName || email.split('@')[0]);
+
+                // Sincronizar con Google Drive
+                await syncUserWithDrive(user);
+
+                showAlert('✅ Inicio de sesión exitoso. Redirigiendo...', 'success');
 
                 setTimeout(() => {
-                    redirectAfterLogin(user);
+                    window.location.href = 'chat.html';
                 }, 800);
 
             } catch (error) {
-                console.error('❌ Error de inicio de sesión:', error);
+                console.error('❌ Error:', error);
                 setLoading(false);
 
                 let errorMessage = 'Error al iniciar sesión';
@@ -769,10 +711,7 @@
                         errorMessage = 'Esta cuenta ha sido deshabilitada';
                         break;
                     case 'auth/user-not-found':
-                        errorMessage = 'No existe una cuenta con este correo. <a href="registro.html">¿Crear cuenta?</a>';
-                        break;
-                    case 'auth/wrong-password':
-                        errorMessage = 'Contraseña incorrecta';
+                        errorMessage = 'No existe una cuenta con este correo. <a href="registro.html" style="color:#c4b5fd;">¿Crear cuenta?</a>';
                         break;
                     case 'auth/too-many-requests':
                         errorMessage = 'Demasiados intentos. Intenta más tarde';
@@ -784,24 +723,33 @@
             }
         }
 
-        // Iniciar sesión con Google
+        // ============================================
+        // LOGIN CON GOOGLE
+        // ============================================
         async function handleGoogleLogin() {
             setLoading(true);
             try {
                 const result = await window.signInWithPopup(window.auth, window.googleProvider);
                 const user = result.user;
-                console.log('✅ Inicio de sesión con Google exitoso:', user.email);
-                showAlert('✅ Inicio de sesión con Google exitoso', 'success');
+
+                sessionStorage.setItem('myxsi_user_type', currentType);
+                sessionStorage.setItem('myxsi_user_email', user.email);
+                sessionStorage.setItem('myxsi_user_name', user.displayName || user.email.split('@')[0]);
+
+                // Sincronizar con Google Drive
+                await syncUserWithDrive(user);
+
+                showAlert('✅ Inicio de sesión exitoso. Redirigiendo...', 'success');
 
                 setTimeout(() => {
-                    redirectAfterLogin(user);
+                    window.location.href = 'chat.html';
                 }, 800);
             } catch (error) {
                 console.error('❌ Error con Google:', error);
                 setLoading(false);
                 if (error.code !== 'auth/popup-closed-by-user') {
                     if (error.code === 'auth/account-exists-with-different-credential') {
-                        showAlert('Ya existe una cuenta con este correo. Inicia sesión con otro método', 'error');
+                        showAlert('Ya existe una cuenta con este correo. Inicia sesión con otro método.', 'error');
                     } else {
                         showAlert('Error al iniciar sesión con Google', 'error');
                     }
@@ -809,7 +757,9 @@
             }
         }
 
-        // Recuperar contraseña
+        // ============================================
+        // RECUPERAR CONTRASEÑA
+        // ============================================
         async function handleForgotPassword(event) {
             event.preventDefault();
             const email = document.getElementById('email').value.trim();
@@ -823,38 +773,28 @@
                 await window.sendPasswordResetEmail(window.auth, email);
                 showAlert('📧 Correo de recuperación enviado. Revisa tu bandeja de entrada', 'success');
             } catch (error) {
-                console.error('❌ Error al enviar recuperación:', error);
+                console.error('❌ Error:', error);
                 let errorMessage = 'Error al enviar el correo de recuperación';
                 if (error.code === 'auth/user-not-found') {
-                    errorMessage = 'No existe una cuenta con este correo. <a href="registro.html">¿Crear cuenta?</a>';
+                    errorMessage = 'No existe una cuenta con este correo. <a href="registro.html" style="color:#c4b5fd;">¿Crear cuenta?</a>';
                 }
                 showAlert(errorMessage, 'error');
             }
         }
 
-        // Redirigir después del login
-        function redirectAfterLogin(user) {
-            if (currentType === 'business') {
-                console.log('🏢 Redirigiendo a panel empresarial');
-                // window.location.href = '/empresarial/panel.html';
-            } else {
-                console.log('👤 Redirigiendo a panel personal');
-                // window.location.href = '/plataforma/panel.html';
-            }
-            console.log('👤 Usuario:', user.email);
-        }
-
-        // Swipe en toggle
+        // ============================================
+        // SWIPE EN TOGGLE (MÓVIL)
+        // ============================================
         const typeSelector = document.getElementById('typeSelector');
         const typeSlider = document.getElementById('typeSlider');
         const btnPersonal = document.getElementById('btnPersonal');
         const btnBusiness = document.getElementById('btnBusiness');
         let touchStartX = 0;
 
-        typeSelector.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
+        typeSelector.addEventListener('touchstart', (e) => { 
+            touchStartX = e.touches[0].clientX; 
         });
-
+        
         typeSelector.addEventListener('touchend', (e) => {
             const diff = e.changedTouches[0].clientX - touchStartX;
             if (Math.abs(diff) > 40) {
